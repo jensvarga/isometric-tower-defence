@@ -1,31 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class BuildAnchor : MonoBehaviour
-{
-    public Rect selectionArea = new Rect(1.0f, 1.0f, 1.0f, 1.0f);
-    public bool built = false;
-
-    // Start is called before the first frame update
-    void Start() {
-        
-    }
-
-    // Update is called once per frame
-    void Update() {
-        if (!built) {
-            //build when selected
-        }        
-    }
-    
-    void OnDrawGizmos() {
-        // Green
-        Gizmos.color = new Color(0.0f, 1.0f, 0.0f);
-        DrawRect(selectionArea);
-    }
-
-    void DrawRect(Rect selectionArea) {
-        Gizmos.DrawWireCube(new Vector3(selectionArea.center.x, selectionArea.center.y, 0.01f), new Vector3(selectionArea.size.x, selectionArea.size.y, 0.01f));
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:c5cd7a1b889afa854e9380fe61bf7840dadcfec7d8ec51ee6d748f2dbb2e4707
+size 797

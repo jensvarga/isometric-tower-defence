@@ -1,25 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Blueprint : MonoBehaviour
-{
-    public int buildCost = 15;
-    private ScoreKeeper scoreKeeper;
-
-    void Start()
-    {
-        var obj = GameObject.FindGameObjectWithTag("scoreKeeper");
-        scoreKeeper = obj.GetComponent<ScoreKeeper>();
-    }
-
-    void OnMouseOver()
-    {
-        scoreKeeper.cost = buildCost;
-    }
-
-    void OnMouseExit()
-    {
-        scoreKeeper.cost = 0;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:a86d4b6824c51b135083be2cc21c662342fb8c153d14c7dbd8a6db400ea6c652
+size 483

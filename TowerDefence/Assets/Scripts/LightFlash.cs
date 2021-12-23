@@ -1,18 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class LightFlash : MonoBehaviour
-{
-    [SerializeField] private float lifetime = 0.1f;
-
-    // Update is called once per frame
-    void Update()
-    {
-        lifetime -= Time.deltaTime;
-        if (lifetime <= 0)
-        {
-            Object.Destroy(this.gameObject);
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:c043a4c47a437bca15f240be207b9221c744a44e8e1fb72167816c41dac656cc
+size 374
