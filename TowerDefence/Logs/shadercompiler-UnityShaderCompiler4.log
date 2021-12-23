@@ -1,6 +1,3 @@
-Base path: '/Applications/Unity/Hub/Editor/2020.3.22f1/Unity.app/Contents', plugins path '/Applications/Unity/Hub/Editor/2020.3.22f1/Unity.app/Contents/PlaybackEngines'
-Cmd: initializeCompiler
-
-Cmd: shutdown
-
-Quitting shader compiler process
+version https://git-lfs.github.com/spec/v1
+oid sha256:7d6345571f07e985758494f6295e03484224352d9d18a411e7089ba477b18879
+size 242
