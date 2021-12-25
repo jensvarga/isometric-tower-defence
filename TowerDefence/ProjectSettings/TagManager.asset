@@ -11,6 +11,7 @@ TagManager:
   - scoreKeeper
   - groundTile
   - cameraObject
+  - nextButton
   layers:
   - Default
   - TransparentFX

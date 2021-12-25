@@ -8,6 +8,7 @@ public class ScoreKeeper : MonoBehaviour
     public int money = 0;
     public int score = 0;
     public int cost = 0;
+    public string info = "";
     public int currentWave = 0;
     public int maxWaves = 0;
     public float timer;
@@ -91,12 +92,13 @@ public class ScoreKeeper : MonoBehaviour
 
         if (cost == 0)
         {
-            costLabel.text = "";
+            costLabel.text = info;
         }
         else
         {
             costLabel.text = "$" + cost.ToString();
         }
+
         if (currentWave <= maxWaves)
         {
             waveLabel.text = currentWave.ToString() + "/" + maxWaves.ToString();
@@ -192,7 +194,7 @@ public class ScoreKeeper : MonoBehaviour
     private void TakeDamage()
     {
         GameObject cameraObject = GameObject.FindGameObjectWithTag("cameraObject");
-        shakeGameObject(cameraObject, 0.5f, 0.5f, false);
+        shakeGameObject(cameraObject, 0.5f, 0.4f, false);
         DisplayDamage();
     }
 

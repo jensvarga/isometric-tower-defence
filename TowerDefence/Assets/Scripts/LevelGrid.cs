@@ -4,35 +4,26 @@ using UnityEngine;
 
 public class LevelGrid : MonoBehaviour
 {
-    private char[,] levelArray = new char[10, 10] {
-        {'x', 'x', 'g', 'x', 'x', 'x', 'x', 'x', 'x', 'x'},
-        {'x', 'x', 'i', 'x', 'x', 'x', 'x', 'x', 'x', 'x'},
-        {'x', 'x', 'i', 'x', 'x', 'x', 'x', 'x', 'x', 'x'},
-        {'x', 'x', 'p', 'i', 'i', 'i', 'p', 'x', 'x', 'x'},
-        {'x', 'x', 'x', 'x', 'x', 'x', 'i', 'x', 'x', 'x'},
-        {'x', 'x', 'x', 'x', 'x', 'x', 'i', 'x', 'x', 'x'},
-        {'x', 'x', 'x', 'x', 'x', 'x', 'i', 'x', 'x', 'x'},
-        {'x', 'x', 'x', 'p', 'i', 'i', 'p', 'x', 'x', 'x'},
-        {'x', 'x', 'x', 'i', 'x', 'x', 'x', 'x', 'x', 'x'},
-        {'x', 'x', 'x', 's', 'x', 'x', 'x', 'x', 'x', 'x'}
-    };
-    public List<Vector3> path;
-    public GameObject buildTile;
-    public GameObject enemyTile;
-    public GameObject spawnTile;
-    public GameObject goalTile;
-    public GameObject underGroundTile;
-    public GameObject slopedEnemyTile;
+    public int levelNumber;
 
-    List<List<string>> levelList;
+    [HideInInspector] public List<Vector3> path;
+    [SerializeField] private GameObject buildTile;
+    [SerializeField] private GameObject enemyTile;
+    [SerializeField] private GameObject spawnTile;
+    [SerializeField] private GameObject goalTile;
+    [SerializeField] private GameObject underGroundTile;
+    [SerializeField] private GameObject slopedEnemyTile;
 
-    public float tileSize = 1.0f;
+    private List<List<string>> levelList;
+    private float tileSize = 1.0f;
 
-    struct Level
+    private struct Level
     {
+        public int index;
         public List<List<List<string>>> subLevels;
-        public Level(List<List<List<string>>> subLevels)
+        public Level(int index, List<List<List<string>>> subLevels)
         {
+            this.index = index;
             this.subLevels = subLevels;
         }
 
@@ -41,117 +32,131 @@ public class LevelGrid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        List<List<string>> sub = new List<List<string>>();
-        sub.Add(new List<string>() { "x", "x", "s", "x", "x", "x", "x", "x", "x", "x" });
-        sub.Add(new List<string>() { "x", "x", "i", "x", "x", "x", "x", "x", "x", "x" });
-        sub.Add(new List<string>() { "x", "x", "i", "x", "x", "x", "x", "x", "x", "x" });
-        sub.Add(new List<string>() { "x", "x", "i", "x", "x", "x", "x", "x", "x", "x" });
-        sub.Add(new List<string>() { "x", "x", "i", "x", "x", "x", "x", "x", "x", "x" });
-        sub.Add(new List<string>() { "x", "x", "p", "i", "i", "p", "x", "x", "x", "x" });
-        sub.Add(new List<string>() { "x", "x", "x", "x", "x", "i", "x", "x", "x", "x" });
-        sub.Add(new List<string>() { "x", "x", "x", "x", "x", "i", "x", "x", "x", "x" });
-        sub.Add(new List<string>() { "x", "x", "x", "x", "x", "i", "x", "x", "x", "x" });
-        sub.Add(new List<string>() { "x", "x", "x", "x", "x", "i", "x", "x", "x", "x" });
-        sub.Add(new List<string>() { "x", "x", "x", "x", "x", "p", "i", "i", "p", "x" });
-        sub.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "i", "x" });
-        sub.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "i", "x" });
-        sub.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "i", "x" });
-        sub.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "g", "x" });
+        List<List<string>> sub1 = new List<List<string>>();
+        sub1.Add(new List<string>() { "x", "x", "g", "x", "x", "x", "x", "x", "x", "x" });
+        sub1.Add(new List<string>() { "x", "x", "i", "x", "x", "x", "x", "x", "x", "x" });
+        sub1.Add(new List<string>() { "x", "x", "i", "x", "x", "x", "x", "x", "x", "x" });
+        sub1.Add(new List<string>() { "x", "x", "i", "x", "x", "x", "x", "x", "x", "x" });
+        sub1.Add(new List<string>() { "x", "x", "i", "x", "x", "x", "x", "x", "x", "x" });
+        sub1.Add(new List<string>() { "x", "x", "p", "i", "i", "p", "x", "x", "x", "x" });
+        sub1.Add(new List<string>() { "x", "x", "x", "x", "x", "i", "x", "x", "x", "x" });
+        sub1.Add(new List<string>() { "x", "x", "x", "x", "x", "i", "x", "x", "x", "x" });
+        sub1.Add(new List<string>() { "x", "x", "x", "x", "x", "i", "x", "x", "x", "x" });
+        sub1.Add(new List<string>() { "x", "x", "x", "x", "x", "i", "x", "x", "x", "x" });
+        sub1.Add(new List<string>() { "x", "x", "x", "x", "x", "p", "i", "i", "p", "x" });
+        sub1.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "i", "x" });
+        sub1.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "i", "x" });
+        sub1.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "i", "x" });
+        sub1.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "s", "x" });
 
-        var sublevels = new List<List<List<string>>>() { sub };
-        Level levelTest = new Level(sublevels);
+        var sublevels1 = new List<List<List<string>>>() { sub1 };
+        Level level1 = new Level(1, sublevels1);
 
-        List<List<string>> example = new List<List<string>>();
-        example.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" });
-        example.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" });
-        example.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" });
-        example.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" });
-        example.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" });
-        example.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" });
-        example.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" });
-        example.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" });
-        example.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" });
-        example.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" });
-        example.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" });
-        example.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" });
-        example.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" });
-        example.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" });
-        example.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" });
+        List<List<string>> sub2 = new List<List<string>>();
+        sub2.Add(new List<string>() { "x", "g", "x", "x", "x", "x", "x", "x", "x", "x2" });
+        sub2.Add(new List<string>() { "x", "p", "i", "i", "i", "i", "i", "i", "p", "x2" });
+        sub2.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "i", "x2" });
+        sub2.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "i", "x2" });
+        sub2.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "i", "x2" });
+        sub2.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "p", "i", "p", "x2" });
+        sub2.Add(new List<string>() { "x", "x", "x", "x", "x", "p", "p", "x2", "x2", "x2" });
+        sub2.Add(new List<string>() { "x", "x", "x", "x", "x", "i", "x", "x", "x", "x" });
+        sub2.Add(new List<string>() { "x2", "x", "x", "x", "x", "i", "x", "x", "x", "x" });
+        sub2.Add(new List<string>() { "x2", "x2", "x2", "x", "x", "p", "x", "x", "x", "x" });
+        sub2.Add(new List<string>() { "x2", "p2", "sr2", "sr", "p", "p", "x", "x", "x", "x" });
+        sub2.Add(new List<string>() { "x2", "i2", "x2", "x2", "x2", "x2", "x2", "x2", "x2", "x2" });
+        sub2.Add(new List<string>() { "x2", "p2", "i2", "p2", "i2", "p2", "i2", "p2", "x2", "x2" });
+        sub2.Add(new List<string>() { "x2", "x2", "x2", "x2", "x2", "x2", "x2", "i2", "x2", "x2" });
+        sub2.Add(new List<string>() { "x2", "x2", "x2", "x2", "x2", "x2", "x2", "s2", "x2", "x2" });
 
-        List<List<string>> level1 = new List<List<string>>();
-        level1.Add(new List<string>() { "x", "x", "g", "x", "x", "x", "x", "x", "x", "x" });
-        level1.Add(new List<string>() { "x", "x", "i", "x", "x", "x", "x", "x", "x", "x" });
-        level1.Add(new List<string>() { "x", "x", "i", "x", "x", "x", "x", "x", "x", "x" });
-        level1.Add(new List<string>() { "x", "x", "p", "i", "i", "i", "p", "x", "x", "x" });
-        level1.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "i", "x", "x", "x" });
-        level1.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "i", "x", "x", "x" });
-        level1.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "i", "x", "x", "x" });
-        level1.Add(new List<string>() { "x", "x", "x", "p", "i", "i", "p", "x", "x", "x" });
-        level1.Add(new List<string>() { "x", "x", "x", "i", "x", "x", "x", "x", "x", "x" });
-        level1.Add(new List<string>() { "x", "x", "x", "s", "x", "x", "x", "x", "x", "x" });
+        var sublevels2 = new List<List<List<string>>>() { sub2 };
+        Level level2 = new Level(2, sublevels2);
 
-        List<List<string>> level2 = new List<List<string>>();
-        level2.Add(new List<string>() { "x", "g", "x", "x", "x", "x", "x", "x", "x", "x2" });
-        level2.Add(new List<string>() { "x", "p", "i", "i", "i", "i", "i", "i", "p", "x2" });
-        level2.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "i", "x2" });
-        level2.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "i", "x2" });
-        level2.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "x", "x", "i", "x2" });
-        level2.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "p", "i", "p", "x2" });
-        level2.Add(new List<string>() { "x", "x", "x", "x", "x", "p", "p", "x2", "x2", "x2" });
-        level2.Add(new List<string>() { "x", "x", "x", "x", "x", "i", "x", "x", "x", "x" });
-        level2.Add(new List<string>() { "x2", "x", "x", "x", "x", "i", "x", "x", "x", "x" });
-        level2.Add(new List<string>() { "x2", "x2", "x2", "x", "x", "p", "x", "x", "x", "x" });
-        level2.Add(new List<string>() { "x2", "p2", "sr2", "sr", "p", "p", "x", "x", "x", "x" });
-        level2.Add(new List<string>() { "x2", "i2", "x2", "x2", "x2", "x2", "x2", "x2", "x2", "x2" });
-        level2.Add(new List<string>() { "x2", "p2", "i2", "p2", "i2", "p2", "i2", "p2", "x2", "x2" });
-        level2.Add(new List<string>() { "x2", "x2", "x2", "x2", "x2", "x2", "x2", "i2", "x2", "x2" });
-        level2.Add(new List<string>() { "x2", "x2", "x2", "x2", "x2", "x2", "x2", "s2", "x2", "x2" });
+        List<List<string>> sub3a = new List<List<string>>();
+        sub3a.Add(new List<string>() { "x", "g", "x", "x", "x", "o", "o", "o", "o", "o" });
+        sub3a.Add(new List<string>() { "x", "p", "x", "x", "x", "o", "o", "o", "o", "o" });
+        sub3a.Add(new List<string>() { "x", "p", "x", "x", "x", "o", "o", "o", "o", "o" });
+        sub3a.Add(new List<string>() { "x", "p", "x", "x", "x", "o", "o", "o", "o", "o" });
+        sub3a.Add(new List<string>() { "x", "p", "x", "x", "x", "o", "o", "o", "o", "o" });
+        sub3a.Add(new List<string>() { "x", "p", "x", "x", "x", "o", "o", "o", "o", "o" });
+        sub3a.Add(new List<string>() { "x", "p", "p", "p", "p", "o", "o", "o", "o", "o" });
+        sub3a.Add(new List<string>() { "x", "x", "x", "x", "p", "o", "o", "o", "o", "o" });
+        sub3a.Add(new List<string>() { "x", "x", "x", "x", "p", "o", "o", "o", "o", "o" });
+        sub3a.Add(new List<string>() { "x", "x", "x", "x", "p", "o", "o", "o", "o", "o" });
+        sub3a.Add(new List<string>() { "x", "x", "x", "x", "p", "o", "o", "o", "o", "o" });
+        sub3a.Add(new List<string>() { "x", "p", "p", "p", "p", "o", "o", "o", "o", "o" });
+        sub3a.Add(new List<string>() { "x", "p", "x", "x", "x", "o", "o", "o", "o", "o" });
+        sub3a.Add(new List<string>() { "x", "p", "x", "x", "x", "o", "o", "o", "o", "o" });
+        sub3a.Add(new List<string>() { "x", "s", "x", "x", "x", "o", "o", "o", "o", "o" });
 
-        List<List<string>> level3a = new List<List<string>>();
-        level3a.Add(new List<string>() { "x", "g", "x", "x", "x", "o", "o", "o", "o", "o" });
-        level3a.Add(new List<string>() { "x", "p", "x", "x", "x", "o", "o", "o", "o", "o" });
-        level3a.Add(new List<string>() { "x", "p", "x", "x", "x", "o", "o", "o", "o", "o" });
-        level3a.Add(new List<string>() { "x", "p", "x", "x", "x", "o", "o", "o", "o", "o" });
-        level3a.Add(new List<string>() { "x", "p", "x", "x", "x", "o", "o", "o", "o", "o" });
-        level3a.Add(new List<string>() { "x", "p", "x", "x", "x", "o", "o", "o", "o", "o" });
-        level3a.Add(new List<string>() { "x", "p", "p", "p", "p", "o", "o", "o", "o", "o" });
-        level3a.Add(new List<string>() { "x", "x", "x", "x", "p", "o", "o", "o", "o", "o" });
-        level3a.Add(new List<string>() { "x", "x", "x", "x", "p", "o", "o", "o", "o", "o" });
-        level3a.Add(new List<string>() { "x", "x", "x", "x", "p", "o", "o", "o", "o", "o" });
-        level3a.Add(new List<string>() { "x", "x", "x", "x", "p", "o", "o", "o", "o", "o" });
-        level3a.Add(new List<string>() { "x", "p", "p", "p", "p", "o", "o", "o", "o", "o" });
-        level3a.Add(new List<string>() { "x", "p", "x", "x", "x", "o", "o", "o", "o", "o" });
-        level3a.Add(new List<string>() { "x", "p", "x", "x", "x", "o", "o", "o", "o", "o" });
-        level3a.Add(new List<string>() { "x", "s", "x", "x", "x", "o", "o", "o", "o", "o" });
+        List<List<string>> sub3b = new List<List<string>>();
+        sub3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "x", "x", "s", "x" });
+        sub3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "x", "x", "p", "x" });
+        sub3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "x", "x", "p", "x" });
+        sub3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "x", "x", "p", "x" });
+        sub3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "x", "x", "p", "x" });
+        sub3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "x", "x", "p", "x" });
+        sub3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "p", "p", "p", "x" });
+        sub3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "p", "x", "x", "x" });
+        sub3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "p", "x", "x", "x" });
+        sub3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "p", "x", "x", "x" });
+        sub3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "p", "x", "x", "x" });
+        sub3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "p", "p", "p", "x" });
+        sub3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "x", "x", "p", "x" });
+        sub3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "x", "x", "p", "x" });
+        sub3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "x", "x", "g", "x" });
 
-        List<List<string>> level3b = new List<List<string>>();
-        level3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "x", "x", "s", "x" });
-        level3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "x", "x", "p", "x" });
-        level3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "x", "x", "p", "x" });
-        level3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "x", "x", "p", "x" });
-        level3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "x", "x", "p", "x" });
-        level3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "x", "x", "p", "x" });
-        level3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "p", "p", "p", "x" });
-        level3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "p", "x", "x", "x" });
-        level3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "p", "x", "x", "x" });
-        level3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "p", "x", "x", "x" });
-        level3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "p", "x", "x", "x" });
-        level3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "p", "p", "p", "x" });
-        level3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "x", "x", "p", "x" });
-        level3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "x", "x", "p", "x" });
-        level3b.Add(new List<string>() { "o", "o", "o", "o", "o", "x", "x", "x", "g", "x" });
+        var sublevels3 = new List<List<List<string>>>() { sub3a, sub3b };
+        Level level3 = new Level(3, sublevels3);
 
-        // Set what level to play
-        var mapList = new List<List<List<string>>>() { level3a, level3b };
-        var mapListTest = new List<Level>() { levelTest };
+        List<List<string>> sub4a = new List<List<string>>();
+        sub4a.Add(new List<string>() { "x", "s", "x", "x", "x", "x", "x", "x", "x", "x" });
+        sub4a.Add(new List<string>() { "x", "p", "x", "x", "x", "x", "x", "x", "x", "x" });
+        sub4a.Add(new List<string>() { "x", "p", "x", "x", "x", "x", "x", "x", "x", "x" });
+        sub4a.Add(new List<string>() { "x", "p", "x", "x", "x", "x", "x", "x", "x", "x" });
+        sub4a.Add(new List<string>() { "x", "p", "x", "x", "x", "x", "x", "x", "x", "x" });
+        sub4a.Add(new List<string>() { "x", "p", "x", "x", "x", "x", "x", "x", "x", "x" });
+        sub4a.Add(new List<string>() { "x", "p", "p", "p", "p", "x", "x", "x", "x", "x" });
+        sub4a.Add(new List<string>() { "x", "x", "x", "x", "i", "x", "x", "x", "x", "x" });
+        sub4a.Add(new List<string>() { "x", "x", "x", "x", "p", "p", "p", "p", "p", "g" });
+        sub4a.Add(new List<string>() { "x", "x", "x", "x", "o", "x", "x", "x", "x", "x" });
+        sub4a.Add(new List<string>() { "x", "x", "x", "x", "o", "x", "x", "x", "x", "x" });
+        sub4a.Add(new List<string>() { "x", "x", "x", "x", "o", "x", "x", "x", "x", "x" });
+        sub4a.Add(new List<string>() { "x", "x", "x", "x", "o", "o", "o", "x", "x", "x" });
+        sub4a.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "o", "x", "x", "x" });
+        sub4a.Add(new List<string>() { "x", "x", "x", "x", "x", "x", "o", "x", "x", "x" });
 
-        // All levels
+        List<List<string>> sub4b = new List<List<string>>();
+        sub4b.Add(new List<string>() { "o", "o", "o", "o", "o", "o", "o", "o", "o", "o" });
+        sub4b.Add(new List<string>() { "o", "o", "o", "o", "o", "o", "o", "o", "o", "o" });
+        sub4b.Add(new List<string>() { "o", "o", "o", "o", "o", "o", "o", "o", "o", "o" });
+        sub4b.Add(new List<string>() { "o", "o", "o", "o", "o", "o", "o", "o", "o", "o" });
+        sub4b.Add(new List<string>() { "o", "o", "o", "o", "o", "o", "o", "o", "o", "o" });
+        sub4b.Add(new List<string>() { "o", "o", "o", "o", "o", "o", "o", "o", "o", "o" });
+        sub4b.Add(new List<string>() { "o", "o", "o", "o", "o", "o", "o", "o", "o", "o" });
+        sub4b.Add(new List<string>() { "o", "o", "o", "o", "o", "o", "o", "o", "o", "o" });
+        sub4b.Add(new List<string>() { "o", "o", "o", "o", "o", "o", "o", "o", "o", "o" });
+        sub4b.Add(new List<string>() { "o", "o", "o", "o", "p", "o", "o", "o", "o", "o" });
+        sub4b.Add(new List<string>() { "o", "o", "o", "o", "i", "o", "o", "o", "o", "o" });
+        sub4b.Add(new List<string>() { "o", "o", "o", "o", "p", "o", "o", "o", "o", "o" });
+        sub4b.Add(new List<string>() { "o", "o", "o", "o", "p", "p", "p", "o", "o", "o" });
+        sub4b.Add(new List<string>() { "o", "o", "o", "o", "o", "o", "p", "o", "o", "o" });
+        sub4b.Add(new List<string>() { "o", "o", "o", "o", "o", "o", "s", "o", "o", "o" });
 
-        foreach (Level map in mapListTest)
+        var sublevels4 = new List<List<List<string>>>() { sub4a, sub4b };
+        Level level4 = new Level(4, sublevels4);
+
+        var levels = new List<Level>() { level1, level2, level3, level4 };
+
+        foreach (Level level in levels)
         {
-            foreach (var sublevel in map.subLevels)
+            if (level.index == levelNumber)
             {
-                BuildMap(sublevel);
+                foreach (var sublevel in level.subLevels)
+                {
+                    BuildMap(sublevel);
+                }
+
             }
         }
     }

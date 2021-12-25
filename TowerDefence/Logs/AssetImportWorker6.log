@@ -1208,3 +1208,6 @@ Received Import Request.
   path: Assets/Enviournment/Materials/Enemies/DarkBlue.mat
   artifactKey: Guid(e4d6b780437094073870de1013091c79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Enviournment/Materials/Enemies/DarkBlue.mat using Guid(e4d6b780437094073870de1013091c79) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '889ecd7b6f4235e492f90f2888b7d70a') in 0.009876 seconds 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
