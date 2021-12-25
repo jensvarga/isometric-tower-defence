@@ -1,3 +1,50 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:70d491d3c5778da04fde7724715f99a4bc20c320c5ce5a53e779db15dc82ead7
-size 476
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - goalTile
+  - enemyTile
+  - levelGrid
+  - enemy
+  - scoreKeeper
+  - groundTile
+  - cameraObject
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Blueprint
+  - Ground
+  - Goal
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
