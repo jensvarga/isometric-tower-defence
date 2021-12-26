@@ -59,13 +59,13 @@ public class spawner : MonoBehaviour
 
         if (level == 1)
         {
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 10; i++)
             {
                 switch (i)
                 {
                     case 0:
                         {
-                            WaveIndicator wave = new WaveIndicator(4, i, pinchRomba);
+                            WaveIndicator wave = new WaveIndicator(4, i, larvaBot);
                             waves.Add(wave);
                             break;
                         }
@@ -77,7 +77,7 @@ public class spawner : MonoBehaviour
                         }
                     case 2:
                         {
-                            WaveIndicator wave = new WaveIndicator(4, i, larvaBot);
+                            WaveIndicator wave = new WaveIndicator(4, i, pinchRomba);
                             waves.Add(wave);
                             break;
                         }

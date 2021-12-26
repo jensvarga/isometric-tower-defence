@@ -12,6 +12,7 @@ TagManager:
   - groundTile
   - cameraObject
   - nextButton
+  - highScore
   layers:
   - Default
   - TransparentFX

@@ -7,9 +7,14 @@ public class NextButton : MonoBehaviour
 {
     private bool swap = true;
     private ScoreKeeper scoreKeeper;
+    private HighScore highScore;
 
     void Start()
     {
+        var obje = GameObject.FindGameObjectWithTag("highScore");
+        highScore = obje.GetComponent<HighScore>();
+        obje.SetActive(false);
+
         var obj = GameObject.FindGameObjectWithTag("scoreKeeper");
         scoreKeeper = obj.GetComponent<ScoreKeeper>();
     }
@@ -48,11 +53,10 @@ public class NextButton : MonoBehaviour
 
     void OnMouseDown()
     {
-        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-
-        if (SceneManager.sceneCountInBuildSettings > nextSceneIndex)
-        {
-            SceneManager.LoadScene(nextSceneIndex);
-        }
+        int score = scoreKeeper.score;
+        highScore.gameObject.SetActive(true);
+        scoreKeeper.SetHighScore(score, SceneManager.GetActiveScene().buildIndex);
+        highScore.GetHighScore(SceneManager.GetActiveScene().buildIndex, score);
+        Time.timeScale = 0;
     }
 }

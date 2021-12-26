@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ScoreKeeper : MonoBehaviour
 {
@@ -46,6 +47,7 @@ public class ScoreKeeper : MonoBehaviour
         nextButtonPosition.SetActive(false);
         damageTaken = 0;
         state = State.ThreeLives;
+        ResumeGame();
     }
 
     // Update is called once per frame
@@ -188,6 +190,47 @@ public class ScoreKeeper : MonoBehaviour
             DisplayDamage();
             TakeDamage();
             state = State.Dead;
+        }
+    }
+
+    public void SetHighScore(int score, int level)
+    {
+        string lev = level.ToString();
+        int top1 = PlayerPrefs.GetInt("Top1" + lev, 0);
+        int top2 = PlayerPrefs.GetInt("Top2" + lev, 0);
+        int top3 = PlayerPrefs.GetInt("Top3" + lev, 0);
+        int top4 = PlayerPrefs.GetInt("Top4" + lev, 0);
+        int top5 = PlayerPrefs.GetInt("Top5" + lev, 0);
+
+        if (score > top1)
+        {
+            PlayerPrefs.SetInt("Top5" + lev, top4);
+            PlayerPrefs.SetInt("Top4" + lev, top3);
+            PlayerPrefs.SetInt("Top3" + lev, top2);
+            PlayerPrefs.SetInt("Top2" + lev, top1);
+            PlayerPrefs.SetInt("Top1" + lev, score);
+        }
+        else if (score > top2)
+        {
+            PlayerPrefs.SetInt("Top5" + lev, top4);
+            PlayerPrefs.SetInt("Top4" + lev, top3);
+            PlayerPrefs.SetInt("Top3" + lev, top2);
+            PlayerPrefs.SetInt("Top2" + lev, score);
+        }
+        else if (score > top3)
+        {
+            PlayerPrefs.SetInt("Top5" + lev, top4);
+            PlayerPrefs.SetInt("Top4" + lev, top3);
+            PlayerPrefs.SetInt("Top3" + lev, score);
+        }
+        else if (score > top4)
+        {
+            PlayerPrefs.SetInt("Top5" + lev, top4);
+            PlayerPrefs.SetInt("Top4" + lev, score);
+        }
+        else if (score > top5)
+        {
+            PlayerPrefs.SetInt("Top5" + lev, score);
         }
     }
 

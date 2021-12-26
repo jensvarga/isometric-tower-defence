@@ -33,7 +33,7 @@ public class enemy : MonoBehaviour
         path = new List<Vector3>(grid.path);
         nearestGridPos = Vector3.zero;
 
-        InvokeRepeating("AtGoal", 0, 1f);
+        InvokeRepeating("AtGoal", 0, 1 - speed);
     }
 
     // Update is called once per frame
