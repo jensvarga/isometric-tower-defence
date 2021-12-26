@@ -65,7 +65,7 @@ public class spawner : MonoBehaviour
                 {
                     case 0:
                         {
-                            WaveIndicator wave = new WaveIndicator(4, i, larvaBot);
+                            WaveIndicator wave = new WaveIndicator(5, i, diamondSpider);
                             waves.Add(wave);
                             break;
                         }
@@ -77,19 +77,19 @@ public class spawner : MonoBehaviour
                         }
                     case 2:
                         {
-                            WaveIndicator wave = new WaveIndicator(4, i, pinchRomba);
+                            WaveIndicator wave = new WaveIndicator(3, i, pinchRomba);
                             waves.Add(wave);
                             break;
                         }
                     case 3:
                         {
-                            WaveIndicator wave = new WaveIndicator(4, i, wallEbot);
+                            WaveIndicator wave = new WaveIndicator(4, i, larvaBot);
                             waves.Add(wave);
                             break;
                         }
                     case 4:
                         {
-                            WaveIndicator wave = new WaveIndicator(4, i, illuminatiBot);
+                            WaveIndicator wave = new WaveIndicator(3, i, illuminatiBot);
                             waves.Add(wave);
                             break;
                         }
@@ -99,9 +99,27 @@ public class spawner : MonoBehaviour
                             waves.Add(wave);
                             break;
                         }
+                    case 6:
+                        {
+                            WaveIndicator wave = new WaveIndicator(4, i, wallEbot);
+                            waves.Add(wave);
+                            break;
+                        }
+                    case 7:
+                        {
+                            WaveIndicator wave = new WaveIndicator(4, i, larvaBot);
+                            waves.Add(wave);
+                            break;
+                        }
+                    case 8:
+                        {
+                            WaveIndicator wave = new WaveIndicator(7, i, diamondSpider);
+                            waves.Add(wave);
+                            break;
+                        }
                     case 9:
                         {
-                            WaveIndicator wave = new WaveIndicator(1, 30, bossRobot);
+                            WaveIndicator wave = new WaveIndicator(1, i + 20, bossRobot);
                             waves.Add(wave);
                             break;
                         }
@@ -260,23 +278,23 @@ public class spawner : MonoBehaviour
         {
             return larvaBot;
         }
-        else if (randonInt < 35)
+        else if (randonInt < 45)
         {
             return wheelyBot;
         }
-        else if (randonInt < 45)
+        else if (randonInt < 55)
         {
             return wallEbot;
         }
-        else if (randonInt < 55)
+        else if (randonInt < 65)
         {
             return illuminatiBot;
         }
-        else if (randonInt < 65)
+        else if (randonInt < 75)
         {
             return crawlBot;
         }
-        else if (randonInt < 75)
+        else if (randonInt < 85)
         {
             return pinchRomba;
         }
