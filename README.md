@@ -1,4 +1,4 @@
-# Sci-Block Defence Grid
+# Cubic Assault
 
 ## Gameplay
 ![image](https://user-images.githubusercontent.com/7307287/147387758-01364f58-1609-4a8f-8aaa-5510203d6ed3.png)
