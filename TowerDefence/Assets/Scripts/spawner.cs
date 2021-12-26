@@ -52,7 +52,6 @@ public class spawner : MonoBehaviour
 
     private List<WaveIndicator> waves = new List<WaveIndicator>();
 
-    // Start is called before the first frame update
     void Start()
     {
         level = 1;

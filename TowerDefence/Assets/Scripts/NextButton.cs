@@ -18,7 +18,7 @@ public class NextButton : MonoBehaviour
         var obj = GameObject.FindGameObjectWithTag("scoreKeeper");
         scoreKeeper = obj.GetComponent<ScoreKeeper>();
     }
-    // Update is called once per frame
+    
     void Update()
     {
         if (this.transform.rotation.z > 0.7 && swap)

@@ -63,6 +63,7 @@ public class HighScore : MonoBehaviour
         {
             SceneManager.LoadScene(nextSceneIndex);
         }
+        
         gameObject.SetActive(false);
     }
 }

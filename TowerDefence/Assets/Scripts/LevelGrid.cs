@@ -21,6 +21,7 @@ public class LevelGrid : MonoBehaviour
     {
         public int index;
         public List<List<List<string>>> subLevels;
+        
         public Level(int index, List<List<List<string>>> subLevels)
         {
             this.index = index;

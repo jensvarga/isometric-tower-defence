@@ -44,4 +44,6 @@ public class CameraController : MonoBehaviour
 
         cameraTrackObject.transform.position = Vector3.Lerp(cameraTrackObject.transform.position, position, Time.unscaledDeltaTime * 100f);
     }
+
+    // TODO: Add controllers for mobile device
 }

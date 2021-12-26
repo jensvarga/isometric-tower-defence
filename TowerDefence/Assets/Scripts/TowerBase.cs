@@ -34,7 +34,6 @@ public class TowerBase : MonoBehaviour
         InvokeRepeating("FindEnemies", 0, 1f);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (targetEnemy != null)

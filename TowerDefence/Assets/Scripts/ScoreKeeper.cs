@@ -6,18 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class ScoreKeeper : MonoBehaviour
 {
-    public int money = 0;
-    public int score = 0;
-    public int cost = 0;
-    public string info = "";
-    public int currentWave = 0;
-    public int maxWaves = 0;
-    public float timer;
-    public bool playerDead = false;
+    [HideInInspector] public int money = 0;
+    [HideInInspector] public int score = 0;
+    [HideInInspector] public int cost = 0;
+    [HideInInspector] public string info = "";
+    [HideInInspector] public int currentWave = 0;
+    [HideInInspector] public int maxWaves = 0;
+    [HideInInspector] public float timer;
+    [HideInInspector] public bool playerDead = false;
     private bool paused;
     private bool shaking = false;
 
-    public int lives = 3;
+    [HideInInspector] public int lives = 3;
 
     [SerializeField] private TextMeshProUGUI scoreLabel;
     [SerializeField] private TextMeshProUGUI moneyLabel;

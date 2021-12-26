@@ -75,7 +75,7 @@ public class enemy : MonoBehaviour
         RaycastHit hit;
         LayerMask goalLeayer = LayerMask.GetMask("Goal");
         Vector3 thisPos = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z);
-        
+
         if (Physics.Raycast(thisPos, transform.TransformDirection(-Vector3.up), out hit, 20.0f, goalLeayer))
         {
             scoreKeeper.damageTaken++;
@@ -99,14 +99,5 @@ public class enemy : MonoBehaviour
             }
         }
         return minPoint;
-    }
-
-    void OnDrawGizmos()
-    {
-        //Gizmos.color = Color.red;
-        //Vector3 nearestGridPos = GetClosestPathPoint(path);
-        // find the vector pointing from our position to the target
-        //Vector3 direction = (nearestGridPos - transform.position).normalized;
-        //Gizmos.DrawRay(transform.position, -Vector3.up);
     }
 }
