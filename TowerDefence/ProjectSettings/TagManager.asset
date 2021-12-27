@@ -13,6 +13,8 @@ TagManager:
   - cameraObject
   - nextButton
   - highScore
+  - musicPlayer
+  - audioPlayer
   layers:
   - Default
   - TransparentFX

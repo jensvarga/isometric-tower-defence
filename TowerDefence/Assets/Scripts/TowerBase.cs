@@ -3,9 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[System.Serializable]
 public class TowerBase : MonoBehaviour
 {
     public float towerLevel = 1f;
+
+    public enum TowerType
+    {
+        Lazer,
+        Missile,
+        Electric
+    }; 
+    [SerializeField] public TowerType towerType;
+
     public GameObject upgradeBp;
     public GameObject upgradedTower;
     public int sellReward = 15;
@@ -23,9 +33,12 @@ public class TowerBase : MonoBehaviour
     protected bool swap = false;
     protected bool shaking = false;
     protected bool ignorsCover = false;
-
+    protected AudioPlayer audioPlayer;
     protected virtual void Start()
     {
+        GameObject soundObject = GameObject.FindGameObjectWithTag("audioPlayer");
+        audioPlayer = soundObject.GetComponent<AudioPlayer>();
+
         enemiesInRange = new List<enemy>();
         targetEnemy = null;
         cooldownTimer = cooldown;
@@ -71,10 +84,25 @@ public class TowerBase : MonoBehaviour
                     shootPoint = gunPoints[0].transform.position;
                 }
                 Vector3 shootDir = (targetEnemy.transform.position - shootPoint).normalized;
+
+                // Shoot
+                switch (towerType)
+                {
+                    case TowerType.Lazer:
+                    {
+                        audioPlayer.PlayLazerSound();
+                        break;
+                    }
+                    case TowerType.Missile:
+                    {
+                        audioPlayer.PlayMissileSound();
+                        break;
+                    }
+                }
                 Transform beamTransform = Instantiate(projectile, shootPoint, Quaternion.LookRotation(shootDir));
                 shakeGameObject(turretPivotPoint.gameObject, 0.2f, 0.1f, false);
                 float damage = baseDamage * towerLevel;
-                beamTransform.GetComponent<Projectile>().Setup(shootDir, damage);
+                beamTransform.GetComponent<Projectile>().Setup(shootDir, damage, audioPlayer);
             }
         }
         else

@@ -30,6 +30,8 @@ public class ScoreKeeper : MonoBehaviour
     [SerializeField] private GameObject heart2;
     [SerializeField] private GameObject heart3;
 
+    private AudioPlayer audioPlayer;
+
     private enum State
     {
         Dead,
@@ -43,6 +45,8 @@ public class ScoreKeeper : MonoBehaviour
 
     void Start()
     {
+        GameObject soundObject = GameObject.FindGameObjectWithTag("audioPlayer");
+        audioPlayer = soundObject.GetComponent<AudioPlayer>();
         money = 20;
         nextButtonPosition.SetActive(false);
         damageTaken = 0;
@@ -236,6 +240,7 @@ public class ScoreKeeper : MonoBehaviour
 
     private void TakeDamage()
     {
+        audioPlayer.PlayBigExplosionSound();
         GameObject cameraObject = GameObject.FindGameObjectWithTag("cameraObject");
         shakeGameObject(cameraObject, 0.5f, 0.4f, false);
         DisplayDamage();
