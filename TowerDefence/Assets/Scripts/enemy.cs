@@ -29,7 +29,7 @@ public class enemy : MonoBehaviour
     void Start()
     {
         GameObject soundObject = GameObject.FindGameObjectWithTag("audioPlayer");
-        audioPlayer = soundObject.GetComponent<AudioPlayer>();
+        if (soundObject != null) audioPlayer = soundObject.GetComponent<AudioPlayer>();
         var obj = GameObject.FindGameObjectWithTag("scoreKeeper");
         scoreKeeper = obj.GetComponent<ScoreKeeper>();
         var grid = GameObject.FindGameObjectWithTag("levelGrid").GetComponent<LevelGrid>();
@@ -66,7 +66,7 @@ public class enemy : MonoBehaviour
         // Die on 0 hp
         if (health <= 0)
         {
-            audioPlayer.PlayExplosionSound();
+            if (audioPlayer != null) audioPlayer.PlayExplosionSound();
             dead = true;
             scoreKeeper.score += pointReward;
             scoreKeeper.money += rewardMoney;

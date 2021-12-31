@@ -43,12 +43,19 @@ public class ScoreKeeper : MonoBehaviour
     private State state;
     public int damageTaken;
 
-    void Start()
+    void Awake()
     {
         GameObject soundObject = GameObject.FindGameObjectWithTag("audioPlayer");
-        audioPlayer = soundObject.GetComponent<AudioPlayer>();
+        if (soundObject != null)
+        {
+            audioPlayer = soundObject.GetComponent<AudioPlayer>();
+        }
+
+        GameObject highScore = GameObject.FindGameObjectWithTag("highScore");
+        if (highScore != null) highScore.SetActive(false);
+        if (nextButtonPosition != null) nextButtonPosition.SetActive(false);
+
         money = 20;
-        nextButtonPosition.SetActive(false);
         damageTaken = 0;
         state = State.ThreeLives;
         ResumeGame();
@@ -240,7 +247,7 @@ public class ScoreKeeper : MonoBehaviour
 
     private void TakeDamage()
     {
-        audioPlayer.PlayBigExplosionSound();
+        if (audioPlayer != null) audioPlayer.PlayBigExplosionSound();
         GameObject cameraObject = GameObject.FindGameObjectWithTag("cameraObject");
         shakeGameObject(cameraObject, 0.5f, 0.4f, false);
         DisplayDamage();

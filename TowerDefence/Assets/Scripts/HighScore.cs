@@ -12,6 +12,8 @@ public class HighScore : MonoBehaviour
     [SerializeField] private TextMeshProUGUI top4Label;
     [SerializeField] private TextMeshProUGUI top5Label;
 
+    [SerializeField] private GameObject blackScreen;
+
     public void GetHighScore(int level, int score)
     {
         string lev = level.ToString();
@@ -58,6 +60,30 @@ public class HighScore : MonoBehaviour
 
     public void NextLevel()
     {
+        StartCoroutine(FadeOut(2f));
+    }
+
+    private IEnumerator FadeOut(float waitTime)
+    {
+        // Do stuff
+        GameObject soundObject = GameObject.FindGameObjectWithTag("audioPlayer");
+        if (soundObject != null)
+        {
+            AudioPlayer audioPlayer = soundObject.GetComponent<AudioPlayer>();
+            if (audioPlayer != null) audioPlayer.FadeOutMusic();
+        }
+
+        GameObject screen = Instantiate(blackScreen, new Vector3(0f, 0f, 0f), Quaternion.identity);
+        CanvasGroup canvasGroup = screen.GetComponent<CanvasGroup>();
+
+         while (canvasGroup.alpha < 1) {
+            canvasGroup.alpha += Time.unscaledDeltaTime / waitTime;
+ 
+            yield return null;
+        }
+
+        yield return new WaitForSecondsRealtime(waitTime);
+        // Start game
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         if (SceneManager.sceneCountInBuildSettings > nextSceneIndex)
         {

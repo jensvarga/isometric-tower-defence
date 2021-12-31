@@ -37,7 +37,7 @@ public class TowerBase : MonoBehaviour
     protected virtual void Start()
     {
         GameObject soundObject = GameObject.FindGameObjectWithTag("audioPlayer");
-        audioPlayer = soundObject.GetComponent<AudioPlayer>();
+        if (soundObject != null) audioPlayer = soundObject.GetComponent<AudioPlayer>();
 
         enemiesInRange = new List<enemy>();
         targetEnemy = null;
@@ -90,12 +90,12 @@ public class TowerBase : MonoBehaviour
                 {
                     case TowerType.Lazer:
                     {
-                        audioPlayer.PlayLazerSound();
+                        if (audioPlayer != null) audioPlayer.PlayLazerSound();
                         break;
                     }
                     case TowerType.Missile:
                     {
-                        audioPlayer.PlayMissileSound();
+                        if (audioPlayer != null) audioPlayer.PlayMissileSound();
                         break;
                     }
                 }

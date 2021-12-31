@@ -14,6 +14,9 @@ public class LevelGrid : MonoBehaviour
     [SerializeField] private GameObject underGroundTile;
     [SerializeField] private GameObject slopedEnemyTile;
 
+    [SerializeField] private GameObject pauseMenu;
+    private bool paused = false;
+
     private List<List<string>> levelList;
     private float tileSize = 1.0f;
 
@@ -21,7 +24,7 @@ public class LevelGrid : MonoBehaviour
     {
         public int index;
         public List<List<List<string>>> subLevels;
-        
+
         public Level(int index, List<List<List<string>>> subLevels)
         {
             this.index = index;
@@ -33,6 +36,9 @@ public class LevelGrid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pauseMenu.SetActive(false);
+        paused = false;
+
         List<List<string>> sub1 = new List<List<string>>();
         sub1.Add(new List<string>() { "x", "x", "g", "x", "x", "x", "x", "x", "x", "x" });
         sub1.Add(new List<string>() { "x", "x", "i", "x", "x", "x", "x", "x", "x", "x" });
@@ -159,6 +165,43 @@ public class LevelGrid : MonoBehaviour
                 }
 
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape) && !paused)
+        {
+            // Game paused
+            Time.timeScale = 0;
+            pauseMenu.SetActive(true);
+            StartCoroutine(Buffer());
+        }
+
+        if (Input.GetKeyUp(KeyCode.Escape) && paused)
+        {
+            ResumeGame();
+        }
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        pauseMenu.SetActive(false);
+        StartCoroutine(Buffer());
+    }
+
+    private IEnumerator Buffer()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        if (paused) paused = false;
+        else paused = true;
+
+        GameObject[] groundTiles = GameObject.FindGameObjectsWithTag("groundTile");
+        foreach (GameObject tile in groundTiles)
+        {
+            GridUnit gridUnit = tile.GetComponent<GridUnit>();
+            if (gridUnit != null) gridUnit.paused = paused;
         }
     }
 

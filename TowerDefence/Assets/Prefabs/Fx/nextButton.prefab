@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 8178579070818231694}
   - component: {fileID: 6225330506637005124}
   - component: {fileID: 4730262563603021215}
-  - component: {fileID: 4808857250155074142}
-  - component: {fileID: 1893081350748144779}
   m_Layer: 5
   m_Name: nextButton
   m_TagString: nextButton
@@ -101,32 +99,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 415a7f03073c84f328e9ff4b34ddca34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &4808857250155074142
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5576632184349913233}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &1893081350748144779
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5576632184349913233}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.011557861, y: 0.02452121, z: 0.024267433}
-  m_Center: {x: -0.0027118966, y: 0.0004999048, z: 0.0015597631}

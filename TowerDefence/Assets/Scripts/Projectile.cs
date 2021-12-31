@@ -41,7 +41,7 @@ public class Projectile : MonoBehaviour
         //Check for a match with the specific tag on any GameObject that collides with your GameObject
         if (other.gameObject.tag == "enemy")
         {
-            audioPlayer.PlayHitSound();
+            if (audioPlayer != null) audioPlayer.PlayHitSound();
             var paticleRot = Quaternion.LookRotation( new Vector3(dir.x, -dir.y, dir.z));
             var instance = Instantiate(lazerHit, paticlePoint.transform.position, paticleRot);
             Destroy(instance.gameObject, 3.0f);

@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
+using System.Collections;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
 
@@ -71,6 +72,25 @@ public class AudioPlayer : MonoBehaviour
             level++;
             StartMusic();
         }
+    }
+
+    public void FadeOutMusic()
+    {
+        StartCoroutine(FadeOut(3f));
+    }
+
+    private IEnumerator FadeOut(float FadeTime) 
+    {
+        float startVolume = currentSong.source.volume;
+ 
+        while (currentSong.source.volume > 0) {
+            currentSong.source.volume -= startVolume * Time.unscaledDeltaTime / FadeTime;
+ 
+            yield return null;
+        }
+ 
+        currentSong.source.Stop ();
+        currentSong.source.volume = startVolume;
     }
 
     public void StopMusic()

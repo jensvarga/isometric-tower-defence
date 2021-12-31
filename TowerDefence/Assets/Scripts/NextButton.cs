@@ -9,16 +9,15 @@ public class NextButton : MonoBehaviour
     private ScoreKeeper scoreKeeper;
     private HighScore highScore;
 
-    void Start()
+    void Awake()
     {
         var obje = GameObject.FindGameObjectWithTag("highScore");
-        highScore = obje.GetComponent<HighScore>();
-        obje.SetActive(false);
+        if (obje != null) highScore = obje.GetComponent<HighScore>();
 
         var obj = GameObject.FindGameObjectWithTag("scoreKeeper");
-        scoreKeeper = obj.GetComponent<ScoreKeeper>();
+        if (obj != null) scoreKeeper = obj.GetComponent<ScoreKeeper>();
     }
-    
+
     void Update()
     {
         if (this.transform.rotation.z > 0.7 && swap)
@@ -51,9 +50,17 @@ public class NextButton : MonoBehaviour
         scoreKeeper.info = "";
     }
 
-    void OnMouseDown()
+    public void ClickNextButton()
     {
         int score = scoreKeeper.score;
+
+        GameObject soundObject = GameObject.FindGameObjectWithTag("audioPlayer");
+        if (soundObject != null)
+        {
+            AudioPlayer audioPlayer = soundObject.GetComponent<AudioPlayer>();
+            if (audioPlayer != null) audioPlayer.FadeOutMusic();
+        }
+
         highScore.gameObject.SetActive(true);
         scoreKeeper.SetHighScore(score, SceneManager.GetActiveScene().buildIndex);
         highScore.GetHighScore(SceneManager.GetActiveScene().buildIndex, score);

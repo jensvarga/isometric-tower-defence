@@ -35,7 +35,7 @@ public class ElectricTower : TowerBase
 
     void ShootElectricDischarge()
     {
-        audioPlayer.PlayElectricSound();
+        if (audioPlayer != null) audioPlayer.PlayElectricSound();
         shakeGameObject(torusPivotPoint, 0.5f, 0.1f, false);
         Instantiate(attackLight, lightPoint.transform.position, Quaternion.identity);
         foreach (enemy enemy in enemiesInRange)
@@ -49,7 +49,7 @@ public class ElectricTower : TowerBase
                                 enemy.transform.position.y + 0.5f,
                                 enemy.transform.position.z);
 
-            audioPlayer.PlayHitSound();
+            if (audioPlayer != null) audioPlayer.PlayHitSound();
             Instantiate(attackLight, lightPos, Quaternion.identity);
         }
     }
