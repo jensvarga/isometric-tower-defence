@@ -240,6 +240,8 @@ public class spawner : MonoBehaviour
 
     private void TransitionToInfiniteMode()
     {
+        AudioPlayer audioPlayer = Resources.FindObjectsOfTypeAll<AudioPlayer>()[0];
+        if (audioPlayer != null) audioPlayer.PlayWinSound();
         enemyCount = 0; // Used for enemy level in infinte mode
         scoreKeeper.nextButtonPosition.SetActive(true);
         state = State.InfiniteMode;

@@ -15,7 +15,10 @@ public class LevelGrid : MonoBehaviour
     [SerializeField] private GameObject slopedEnemyTile;
 
     [SerializeField] private GameObject pauseMenu;
+    private ScoreKeeper scoreKeeper;
+
     private bool paused = false;
+    private bool dead = false;
 
     private List<List<string>> levelList;
     private float tileSize = 1.0f;
@@ -38,6 +41,8 @@ public class LevelGrid : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         paused = false;
+        GameObject scoreObject = GameObject.FindGameObjectWithTag("scoreKeeper");
+        scoreKeeper = scoreObject.GetComponent<ScoreKeeper>();
 
         List<List<string>> sub1 = new List<List<string>>();
         sub1.Add(new List<string>() { "x", "x", "g", "x", "x", "x", "x", "x", "x", "x" });
@@ -153,7 +158,27 @@ public class LevelGrid : MonoBehaviour
         var sublevels4 = new List<List<List<string>>>() { sub4a, sub4b };
         Level level4 = new Level(4, sublevels4);
 
-        var levels = new List<Level>() { level1, level2, level3, level4 };
+        List<List<string>> sub5a = new List<List<string>>();
+        sub5a.Add(new List<string>() { "o", "o", "o", "o", "g", "o", "o", "o", "o", "o" });
+        sub5a.Add(new List<string>() { "o", "o", "o", "o", "p", "o", "o", "o", "o", "o" });
+        sub5a.Add(new List<string>() { "o", "o", "o", "o", "p", "o", "o", "o", "o", "o" });
+        sub5a.Add(new List<string>() { "o", "o", "o", "o", "p", "o", "o", "o", "o", "o" });
+        sub5a.Add(new List<string>() { "o", "o", "x2", "o", "p", "o", "x2", "o", "o", "o" });
+        sub5a.Add(new List<string>() { "o", "o", "o", "o", "p", "o", "o", "o", "o", "o" });
+        sub5a.Add(new List<string>() { "o", "o", "o", "o", "p", "o", "o", "o", "o", "o" });
+        sub5a.Add(new List<string>() { "o", "o", "o", "o", "p", "o", "o", "o", "o", "o" });
+        sub5a.Add(new List<string>() { "o", "p2", "o", "o", "p", "o", "o", "o", "p2", "o" });
+        sub5a.Add(new List<string>() { "o", "p2", "o", "o", "x", "o", "o", "o", "p2", "o" });
+        sub5a.Add(new List<string>() { "o", "p2", "o", "o", "o", "o", "o", "o", "p2", "o" });
+        sub5a.Add(new List<string>() { "o", "p2", "o", "o", "o", "o", "o", "o", "p2", "o" });
+        sub5a.Add(new List<string>() { "o", "p2", "x2", "o", "o", "o", "o", "x2", "p2", "o" });
+        sub5a.Add(new List<string>() { "o", "p2", "o", "o", "o", "o", "o", "o", "p2", "o" });
+        sub5a.Add(new List<string>() { "o", "s2", "o", "o", "o", "o", "o", "o", "s2", "o" });
+
+        var sublevels5 = new List<List<List<string>>>() { sub5a };
+        Level level5 = new Level(5, sublevels5);
+
+        var levels = new List<Level>() { level1, level2, level3, level4, level5 };
 
         foreach (Level level in levels)
         {
@@ -181,6 +206,17 @@ public class LevelGrid : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Escape) && paused)
         {
             ResumeGame();
+        }
+
+        if (scoreKeeper.damageTaken >= 3)
+        {
+            dead = true;
+            GameObject[] groundTiles = GameObject.FindGameObjectsWithTag("groundTile");
+            foreach (GameObject tile in groundTiles)
+            {
+                GridUnit gridUnit = tile.GetComponent<GridUnit>();
+                if (gridUnit != null) gridUnit.paused = dead;
+            }
         }
     }
 

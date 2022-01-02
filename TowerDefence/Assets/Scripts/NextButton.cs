@@ -61,9 +61,20 @@ public class NextButton : MonoBehaviour
             if (audioPlayer != null) audioPlayer.FadeOutMusic();
         }
 
+        if (highScore == null)
+        {
+            FindHighScore();
+        }
+
         highScore.gameObject.SetActive(true);
         scoreKeeper.SetHighScore(score, SceneManager.GetActiveScene().buildIndex);
         highScore.GetHighScore(SceneManager.GetActiveScene().buildIndex, score);
         Time.timeScale = 0;
+    }
+
+    private void FindHighScore()
+    {
+        HighScore[] hs = Resources.FindObjectsOfTypeAll<HighScore>();
+        highScore = hs[0];
     }
 }

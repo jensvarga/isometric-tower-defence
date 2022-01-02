@@ -228,7 +228,7 @@ public class GridUnit : MonoBehaviour
 
     private void DetectInput()
     {
-        if (paused) return;
+        if (paused || dead) return;
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit = new RaycastHit();

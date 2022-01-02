@@ -141,7 +141,7 @@ MonoBehaviour:
   turretPivotPoint: {fileID: 7148515913524705097}
   projectile: {fileID: 0}
   gunPoints: []
-  range: 2
+  range: 2.5
   cooldown: 3
   baseDamage: 1
   torusPivotPoint: {fileID: 1556494149391593137}

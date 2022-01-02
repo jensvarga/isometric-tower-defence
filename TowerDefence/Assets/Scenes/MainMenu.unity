@@ -1659,6 +1659,8 @@ MonoBehaviour:
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: bb0cdee4ed080432a963c3d09c239454, type: 3}
     source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 9aaa494b98e8c467d9fda82eca798820, type: 3}
+    source: {fileID: 0}
   lazerSounds:
   - clip: {fileID: 8300000, guid: 4930e1909ca3142019ea121551b8fbdd, type: 3}
     source: {fileID: 0}
@@ -1700,6 +1702,9 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: be01bfe293a81429496ddc9d307b6495, type: 3}
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 70a6fc23702ff4e7a865c35b1f7663a9, type: 3}
+    source: {fileID: 0}
+  winSounds:
+  - clip: {fileID: 8300000, guid: 6711cb71dde4447e0b4f90fa19882c3e, type: 3}
     source: {fileID: 0}
 --- !u!1001 &1321815923
 PrefabInstance:

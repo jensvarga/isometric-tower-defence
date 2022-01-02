@@ -114,7 +114,7 @@ public class ScoreKeeper : MonoBehaviour
 
         if (currentWave <= maxWaves)
         {
-            waveLabel.text = currentWave.ToString() + "/" + maxWaves.ToString();
+            waveLabel.text = (currentWave + 1).ToString() + "/" + maxWaves.ToString();
             int time = (int)timer;
             timeLabel.text = time.ToString();
         }

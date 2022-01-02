@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -89.45957, y: 54.33228}
+  m_AnchoredPosition: {x: -104.6, y: 54.33228}
   m_SizeDelta: {x: 81.755, y: 61.383}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4928456012975384392
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <3
+  m_text: "\u2665"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3e74b9276cc0b45458eba4dc786147d1, type: 2}
   m_sharedMaterial: {fileID: -8380974848628387903, guid: 3e74b9276cc0b45458eba4dc786147d1, type: 2}
@@ -93,8 +93,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <3
+  m_text: "\u2665"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3e74b9276cc0b45458eba4dc786147d1, type: 2}
   m_sharedMaterial: {fileID: -8380974848628387903, guid: 3e74b9276cc0b45458eba4dc786147d1, type: 2}
@@ -363,8 +363,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1375,7 +1375,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -103.419785, y: 53.699024}
+  m_AnchoredPosition: {x: -138.2, y: 53.699024}
   m_SizeDelta: {x: 81.755, y: 61.383}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &119537030138763152
@@ -1406,7 +1406,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <3
+  m_text: "\u2665"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3e74b9276cc0b45458eba4dc786147d1, type: 2}
   m_sharedMaterial: {fileID: -8380974848628387903, guid: 3e74b9276cc0b45458eba4dc786147d1, type: 2}
@@ -1433,8 +1433,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

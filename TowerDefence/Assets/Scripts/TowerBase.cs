@@ -34,6 +34,7 @@ public class TowerBase : MonoBehaviour
     protected bool shaking = false;
     protected bool ignorsCover = false;
     protected AudioPlayer audioPlayer;
+    
     protected virtual void Start()
     {
         GameObject soundObject = GameObject.FindGameObjectWithTag("audioPlayer");

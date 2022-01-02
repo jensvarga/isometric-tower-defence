@@ -1222,6 +1222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeInScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 6985997888941960930, guid: e49e69f33ff6443c4983422968aaba28, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e49e69f33ff6443c4983422968aaba28, type: 3}
 --- !u!1 &963194225

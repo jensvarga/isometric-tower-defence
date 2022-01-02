@@ -32,6 +32,15 @@ public class PauseButton : MonoBehaviour
         SceneManager.LoadScene(sceneIndex);
     }
 
+    public void ClickedNextLevel()
+    {
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        if (SceneManager.sceneCountInBuildSettings > nextSceneIndex)
+        {
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+    }
+
     public void ClickedExitButton()
     {
         Debug.Log("Exit game");

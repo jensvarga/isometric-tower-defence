@@ -18,6 +18,7 @@ public class AudioPlayer : MonoBehaviour
     [SerializeField] private Sound[] hitSounds;
     [SerializeField] private Sound[] explosionSounds;
     [SerializeField] private Sound[] bigExplosionSounds;
+    [SerializeField] private Sound[] winSounds;
 
     private Sound currentSong;
     private int level = 0;
@@ -57,6 +58,15 @@ public class AudioPlayer : MonoBehaviour
             song.source.volume = 0.5f;
             song.source.pitch = 1f;
         }
+
+        foreach (Sound sound in winSounds)
+        {
+            sound.source = gameObject.AddComponent<AudioSource>();
+            sound.source.clip = sound.clip;
+            sound.source.loop = false;
+            sound.source.volume = 1f;
+            sound.source.pitch = 1f;
+        }
     }
 
     private void Start()
@@ -89,7 +99,7 @@ public class AudioPlayer : MonoBehaviour
             yield return null;
         }
  
-        currentSong.source.Stop ();
+        currentSong.source.Stop();
         currentSong.source.volume = startVolume;
     }
 
@@ -169,6 +179,16 @@ public class AudioPlayer : MonoBehaviour
             return;
         }
         Sound sound = bigExplosionSounds[Random.Range(0, bigExplosionSounds.Length)];
+        sound.source.Play();
+    }
+
+    public void PlayWinSound()
+    {
+        if (mute)
+        {
+            return;
+        }
+        Sound sound = winSounds[Random.Range(0, winSounds.Length)];
         sound.source.Play();
     }
 }
