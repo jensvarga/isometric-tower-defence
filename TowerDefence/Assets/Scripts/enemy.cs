@@ -15,15 +15,17 @@ public class enemy : MonoBehaviour
     private ScoreKeeper scoreKeeper;
     private Vector3 nearestGridPos;
     private AudioPlayer audioPlayer;
+    [HideInInspector] public bool armoured;
 
     public bool dead = false;
 
-    public void Setup(int level)
+    public void Setup(int level, bool armoured)
     {
         this.enemyLevel = level;
         this.health *= (float)level;
         this.rewardMoney *= level;
         this.pointReward = (int)this.health;
+        this.armoured = armoured;
     }
 
     void Start()

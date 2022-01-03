@@ -166,7 +166,7 @@ public class LevelGrid : MonoBehaviour
         sub5a.Add(new List<string>() { "o", "o", "x2", "o", "p", "o", "x2", "o", "o", "o" });
         sub5a.Add(new List<string>() { "o", "o", "o", "o", "p", "o", "o", "o", "o", "o" });
         sub5a.Add(new List<string>() { "o", "o", "o", "o", "p", "o", "o", "o", "o", "o" });
-        sub5a.Add(new List<string>() { "o", "o", "o", "o", "p", "o", "o", "o", "o", "o" });
+        sub5a.Add(new List<string>() { "o", "o", "o", "x", "p", "x", "o", "o", "o", "o" });
         sub5a.Add(new List<string>() { "o", "p2", "o", "o", "p", "o", "o", "o", "p2", "o" });
         sub5a.Add(new List<string>() { "o", "p2", "o", "o", "x", "o", "o", "o", "p2", "o" });
         sub5a.Add(new List<string>() { "o", "p2", "o", "o", "o", "o", "o", "o", "p2", "o" });

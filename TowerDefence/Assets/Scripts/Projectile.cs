@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private GameObject lazerLight;
     private float failsafeLifetime = 2.0f;
     private AudioPlayer audioPlayer;
- 
+
     public void Setup(Vector3 dir, float damage, AudioPlayer audioPlayer)
     {
         this.dir = dir;
@@ -42,14 +42,22 @@ public class Projectile : MonoBehaviour
         if (other.gameObject.tag == "enemy")
         {
             if (audioPlayer != null) audioPlayer.PlayHitSound();
-            var paticleRot = Quaternion.LookRotation( new Vector3(dir.x, -dir.y, dir.z));
+            var paticleRot = Quaternion.LookRotation(new Vector3(dir.x, -dir.y, dir.z));
             var instance = Instantiate(lazerHit, paticlePoint.transform.position, paticleRot);
             Destroy(instance.gameObject, 3.0f);
             var light = Instantiate(lazerLight, paticlePoint.transform.position, paticleRot);
-            
-            enemy enemy = other.gameObject.GetComponent<enemy>();
-            enemy.health -= damage;
 
+            enemy enemy = other.gameObject.GetComponent<enemy>();
+            
+            if (enemy.armoured)
+            {
+                enemy.health -= damage / 2;
+            }
+            else
+            {
+                enemy.health -= damage;
+            }
+            
             Object.Destroy(this.gameObject);
         }
     }

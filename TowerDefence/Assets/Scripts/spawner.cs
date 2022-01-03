@@ -39,12 +39,14 @@ public class spawner : MonoBehaviour
         public int enemies;
         public int level;
         public GameObject type;
+        public bool armoured;
 
-        public WaveIndicator(int enemies, int level, GameObject type)
+        public WaveIndicator(int enemies, int level, GameObject type, bool armoured)
         {
             this.enemies = enemies;
             this.level = level;
             this.type = type;
+            this.armoured = armoured;
         }
     }
 
@@ -64,67 +66,67 @@ public class spawner : MonoBehaviour
                 {
                     case 0:
                         {
-                            WaveIndicator wave = new WaveIndicator(5, i, diamondSpider);
+                            WaveIndicator wave = new WaveIndicator(5, i, diamondSpider, false);
                             waves.Add(wave);
                             break;
                         }
                     case 1:
                         {
-                            WaveIndicator wave = new WaveIndicator(4, i, wheelyBot);
+                            WaveIndicator wave = new WaveIndicator(4, i, wheelyBot, false);
                             waves.Add(wave);
                             break;
                         }
                     case 2:
                         {
-                            WaveIndicator wave = new WaveIndicator(3, i, pinchRomba);
+                            WaveIndicator wave = new WaveIndicator(3, i, pinchRomba, false);
                             waves.Add(wave);
                             break;
                         }
                     case 3:
                         {
-                            WaveIndicator wave = new WaveIndicator(4, i, larvaBot);
+                            WaveIndicator wave = new WaveIndicator(4, i, larvaBot, false);
                             waves.Add(wave);
                             break;
                         }
                     case 4:
                         {
-                            WaveIndicator wave = new WaveIndicator(3, i, illuminatiBot);
+                            WaveIndicator wave = new WaveIndicator(3, i, illuminatiBot, true);
                             waves.Add(wave);
                             break;
                         }
                     case 5:
                         {
-                            WaveIndicator wave = new WaveIndicator(4, i, crawlBot);
+                            WaveIndicator wave = new WaveIndicator(4, i, crawlBot, false);
                             waves.Add(wave);
                             break;
                         }
                     case 6:
                         {
-                            WaveIndicator wave = new WaveIndicator(4, i, wallEbot);
+                            WaveIndicator wave = new WaveIndicator(4, i, wallEbot, true);
                             waves.Add(wave);
                             break;
                         }
                     case 7:
                         {
-                            WaveIndicator wave = new WaveIndicator(4, i, larvaBot);
+                            WaveIndicator wave = new WaveIndicator(4, i, larvaBot, false);
                             waves.Add(wave);
                             break;
                         }
                     case 8:
                         {
-                            WaveIndicator wave = new WaveIndicator(7, i, diamondSpider);
+                            WaveIndicator wave = new WaveIndicator(7, i, diamondSpider, false);
                             waves.Add(wave);
                             break;
                         }
                     case 9:
                         {
-                            WaveIndicator wave = new WaveIndicator(1, i + 20, bossRobot);
+                            WaveIndicator wave = new WaveIndicator(1, i + 20, bossRobot, false);
                             waves.Add(wave);
                             break;
                         }
                     default:
                         {
-                            WaveIndicator wave = new WaveIndicator(5, i, diamondSpider);
+                            WaveIndicator wave = new WaveIndicator(5, i, diamondSpider, false);
                             waves.Add(wave);
                             break;
                         }
@@ -180,7 +182,7 @@ public class spawner : MonoBehaviour
                             GameObject enemyType = waves[currentWave].type;
                             int level = waves[currentWave].level == 0 ? 1 : waves[currentWave].level;
                             GameObject enemyObj = Instantiate(enemyType, spawnPoint.transform.position, Quaternion.identity);
-                            enemyObj.GetComponent<enemy>().Setup(level);
+                            enemyObj.GetComponent<enemy>().Setup(level, waves[currentWave].armoured);
                             enemyCount++;
                             cooldownTimer = 5.0f;
                         }
@@ -229,7 +231,7 @@ public class spawner : MonoBehaviour
                         // Spawn enemy
                         int level = maxWaves + enemyCount;
                         GameObject enemyObj = Instantiate(RandomEnemyType(), spawnPoint.transform.position, Quaternion.identity);
-                        enemyObj.GetComponent<enemy>().Setup(level);
+                        enemyObj.GetComponent<enemy>().Setup(level, Random.Range(0, 1) == 0);
                         cooldownTimer = 5.0f;
                         enemyCount++;
                     }
