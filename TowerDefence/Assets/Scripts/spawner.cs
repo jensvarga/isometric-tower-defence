@@ -246,7 +246,15 @@ public class spawner : MonoBehaviour
         if (audioPlayer != null) audioPlayer.PlayWinSound();
         enemyCount = 0; // Used for enemy level in infinte mode
         scoreKeeper.nextButtonPosition.SetActive(true);
+        StartCoroutine(ShowWinText(1f));
         state = State.InfiniteMode;
+    }
+
+    private IEnumerator ShowWinText(float waitTime) 
+    {
+        scoreKeeper.winLabel.text = "Mission Completed";
+        yield return new WaitForSecondsRealtime(waitTime);
+        scoreKeeper.winLabel.text = "";
     }
 
     private void TransitionToInWave()

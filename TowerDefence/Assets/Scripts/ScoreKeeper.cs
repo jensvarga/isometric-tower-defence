@@ -24,6 +24,7 @@ public class ScoreKeeper : MonoBehaviour
     [SerializeField] private TextMeshProUGUI costLabel;
     [SerializeField] private TextMeshProUGUI waveLabel;
     [SerializeField] private TextMeshProUGUI timeLabel;
+    [SerializeField] public TextMeshProUGUI winLabel;
     [SerializeField] public GameObject nextButtonPosition;
 
     [SerializeField] private GameObject heart1;
@@ -59,6 +60,11 @@ public class ScoreKeeper : MonoBehaviour
         damageTaken = 0;
         state = State.ThreeLives;
         ResumeGame();
+    }
+
+    void Start()
+    {
+        winLabel.text = "";
     }
 
     // Update is called once per frame
